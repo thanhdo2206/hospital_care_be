@@ -12,7 +12,7 @@ const userRouter = express.Router();
 userRouter.post(
   "/register",
   checkExistEmail,
-  validateEmail,
+  // validateEmail,
   userController.register
 );
 
