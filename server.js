@@ -21,6 +21,10 @@ app.use(cookieParser());
 //dùng router
 app.use("/api/v1", rootRouter);
 
+app.get("/get", (req, res) => {
+  res.send({ mess: "Hello" });
+});
+
 const port = process.env.PORT || 8000;
 
 app.listen(port, async () => {
