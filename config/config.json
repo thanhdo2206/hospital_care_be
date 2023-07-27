@@ -1,23 +1,23 @@
 {
   "development": {
-    "username": "root",
-    "password": "123456789",
-    "database": "hospital_care_db",
-    "host": "127.0.0.1",
+    "username": "ujr4ajqkd1wee1e6",
+    "password": "JyvADTZgj2pr7t9wMPO9",
+    "database": "bqecynljhpzahhitzb2z",
+    "host": "bqecynljhpzahhitzb2z-mysql.services.clever-cloud.com",
     "dialect": "mysql"
   },
   "test": {
-    "username": "root",
-    "password": "123456789",
-    "database": "hospital_care_db",
-    "host": "127.0.0.1",
+    "username": "ujr4ajqkd1wee1e6",
+    "password": "JyvADTZgj2pr7t9wMPO9",
+    "database": "bqecynljhpzahhitzb2z",
+    "host": "bqecynljhpzahhitzb2z-mysql.services.clever-cloud.com",
     "dialect": "mysql"
   },
   "production": {
-    "username": "root",
-    "password": "123456789",
-    "database": "hospital_care_db",
-    "host": "127.0.0.1",
+    "username": "ujr4ajqkd1wee1e6",
+    "password": "JyvADTZgj2pr7t9wMPO9",
+    "database": "bqecynljhpzahhitzb2z",
+    "host": "bqecynljhpzahhitzb2z-mysql.services.clever-cloud.com",
     "dialect": "mysql"
   }
 }
