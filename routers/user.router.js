@@ -25,6 +25,8 @@ userRouter.post(
 
 userRouter.post("/refresh-token", userController.requestRefreshToken);
 
+userRouter.post("/logout", authenticate, userController.logout);
+
 userRouter.get("/", authenticate, userController.getCurrentUser);
 
 module.exports = userRouter;

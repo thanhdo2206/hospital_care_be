@@ -80,6 +80,13 @@ const requestRefreshToken = async (req, res) => {
   }
 };
 
+const logout = async (req, res) => {
+  res.clearCookie(ACCESS_TOKEN);
+  res.clearCookie(REFRESH_TOKEN);
+
+  res.status(200).json("Logged out successfully!");
+};
+
 const getCurrentUser = async (req, res) => {
   console.log("getCurrentUser api");
   try {
@@ -133,4 +140,10 @@ const getCurrentUser = async (req, res) => {
 //   }
 // };
 
-module.exports = { register, login, requestRefreshToken, getCurrentUser };
+module.exports = {
+  register,
+  login,
+  requestRefreshToken,
+  getCurrentUser,
+  logout,
+};
