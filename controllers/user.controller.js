@@ -29,14 +29,14 @@ const login = async (req, res) => {
       // maxAge: 20 * 1000,
       httpOnly: true,
       secure: true,
-      sameSite: "strict",
+      sameSite: "none",
     });
 
     res.cookie(REFRESH_TOKEN, refreshToken, {
       // maxAge: 30 * 24 * 60 * 60 * 1000,
       httpOnly: true,
       secure: true,
-      sameSite: "strict",
+      sameSite: "none",
     });
 
     const { password, emailToken, ...dataUserResponse } = req.user;
@@ -64,14 +64,14 @@ const requestRefreshToken = async (req, res) => {
       // maxAge: 20 * 1000,
       httpOnly: true,
       secure: true,
-      sameSite: "strict",
+      sameSite: "none",
     });
 
     res.cookie(REFRESH_TOKEN, newRefreshToken, {
       // maxAge: 30 * 24 * 60 * 60 * 1000,
       httpOnly: true,
       secure: true,
-      sameSite: "strict",
+      sameSite: "none",
     });
 
     res.status(200).send("Refresh token successfull");
