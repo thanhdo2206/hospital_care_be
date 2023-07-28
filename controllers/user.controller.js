@@ -28,14 +28,14 @@ const login = async (req, res) => {
     res.cookie(ACCESS_TOKEN, accessToken, {
       // maxAge: 20 * 1000,
       httpOnly: true,
-      secure: false,
+      secure: true,
       sameSite: "strict",
     });
 
     res.cookie(REFRESH_TOKEN, refreshToken, {
       // maxAge: 30 * 24 * 60 * 60 * 1000,
       httpOnly: true,
-      secure: false,
+      secure: true,
       sameSite: "strict",
     });
 
@@ -63,14 +63,14 @@ const requestRefreshToken = async (req, res) => {
     res.cookie(ACCESS_TOKEN, newAccessToken, {
       // maxAge: 20 * 1000,
       httpOnly: true,
-      secure: false,
+      secure: true,
       sameSite: "strict",
     });
 
     res.cookie(REFRESH_TOKEN, newRefreshToken, {
       // maxAge: 30 * 24 * 60 * 60 * 1000,
       httpOnly: true,
-      secure: false,
+      secure: true,
       sameSite: "strict",
     });
 
