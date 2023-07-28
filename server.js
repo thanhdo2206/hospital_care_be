@@ -9,7 +9,7 @@ const app = express();
 
 dotenv.config();
 
-app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
+app.use(cors({ credentials: true, origin: process.env.URL_REACT }));
 // app.use(cors());
 
 //cài ứng dụng sử dụng kiểu json
