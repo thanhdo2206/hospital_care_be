@@ -1,4 +1,11 @@
 const REFRESH_TOKEN = "refreshToken";
 const ACCESS_TOKEN = "accessToken";
+const ACCEPT_APPOINTMENT = 1;
+const CANCEL_APPOINTMENT = 2;
 
-module.exports = { REFRESH_TOKEN, ACCESS_TOKEN };
+module.exports = {
+  REFRESH_TOKEN,
+  ACCESS_TOKEN,
+  ACCEPT_APPOINTMENT,
+  CANCEL_APPOINTMENT,
+};

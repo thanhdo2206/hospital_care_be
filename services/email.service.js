@@ -1,5 +1,10 @@
 const nodemailer = require("nodemailer");
 const { User } = require("../models/index");
+const {
+  createContentEmailNotificationAppointment,
+} = require("../utils/createContentEmail");
+
+const { ACCEPT_APPOINTMENT } = require("../utils/constant");
 
 const sendVerifyEmail = async (emailToken, email, userId) => {
   const url = `${process.env.URL_REACT}/verify-email/${emailToken}/${userId}`;
@@ -61,4 +66,40 @@ const verifyEmailService = async (emailToken, userId) => {
   }
 };
 
-module.exports = { sendVerifyEmail, verifyEmailService };
+const sendEmailNotificationAppointmentService = async (appointment) => {
+  try {
+    const patient = appointment.patient;
+
+    const transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 587,
+      secure: false,
+      auth: {
+        user: process.env.EMAIL_APP,
+        pass: process.env.EMAIL_APP_PASSWORD,
+      },
+    });
+
+    const contentEmail = createContentEmailNotificationAppointment(appointment);
+    const titleEmail =
+      appointment.status === ACCEPT_APPOINTMENT
+        ? "Email notification of acceptance of medical appointment"
+        : "Email notification of cancellation of medical appointment";
+    await transporter.sendMail({
+      from: '"Hospital Care" <hospitalcarethanh@gmail.com>',
+      to: patient.email,
+      subject: titleEmail,
+      html: contentEmail,
+    });
+    console.log("Email has been sent successfully");
+  } catch (error) {
+    console.log(error);
+    return "email not sent";
+  }
+};
+
+module.exports = {
+  sendVerifyEmail,
+  verifyEmailService,
+  sendEmailNotificationAppointmentService,
+};

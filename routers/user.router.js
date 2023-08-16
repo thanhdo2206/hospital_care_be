@@ -7,12 +7,14 @@ const {
   checkVerifyEmail,
 } = require("../middlewares/validations/checkExist");
 const { authenticate } = require("../middlewares/auth/authenticate");
+const { authorize } = require("../middlewares/auth/authorize");
+
 const userRouter = express.Router();
 
 userRouter.post(
   "/register",
   checkExistEmail,
-  // validateEmail,
+  validateEmail,
   userController.register
 );
 
@@ -23,10 +25,12 @@ userRouter.post(
   userController.login
 );
 
-userRouter.post("/refresh-token", userController.requestRefreshToken);
-
-userRouter.post("/logout", authenticate, userController.logout);
-
 userRouter.get("/", authenticate, userController.getCurrentUser);
+userRouter.patch(
+  "/",
+  authenticate,
+  authorize(["PATIENT", "DOCTOR"]),
+  userController.updateProfileUser
+);
 
 module.exports = userRouter;

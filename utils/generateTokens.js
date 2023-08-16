@@ -1,9 +1,7 @@
 const jwt = require("jsonwebtoken");
 
 const generateAccessToken = (payload) => {
-  const accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {
-    expiresIn: "20s",
-  });
+  const accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET);
   return `Bearer ${accessToken}`;
 };
 

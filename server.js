@@ -9,8 +9,8 @@ const app = express();
 
 dotenv.config();
 
-app.use(cors({ credentials: true, origin: process.env.URL_REACT }));
-// app.use(cors());
+// app.use(cors({ credentials: true, origin: process.env.URL_REACT }));
+app.use(cors());
 
 //cài ứng dụng sử dụng kiểu json
 app.use(express.json());
@@ -20,10 +20,6 @@ app.use(cookieParser());
 
 //dùng router
 app.use("/api/v1", rootRouter);
-
-app.get("/get", (req, res) => {
-  res.send({ mess: "Hello" });
-});
 
 const port = process.env.PORT || 8000;
 
