@@ -102,7 +102,7 @@ const getHistoryAppointmentByPatientService = async (patientId) => {
   try {
     const [results] = await sequelize.query(
       `select Appointments.*,Departments.name as departmentName,Users.avatar as avatarDoctor,Users.firstName as firstNameDoctor,Users.lastName as lastNameDoctor,TimeSlots.startTime,TimeSlots.duration,MedicalExaminations.examinationPrice from Appointments
-        inner join Users on Users.id = appointments.doctorId
+        inner join Users on Users.id = Appointments.doctorId
         inner join TimeSlots on TimeSlots.id = Appointments.timeSlotId
         inner join MedicalExaminations on MedicalExaminations.id = Users.id
         inner join Departments on MedicalExaminations.departmentId = Departments.id
