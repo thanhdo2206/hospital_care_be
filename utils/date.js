@@ -1,11 +1,13 @@
 const moment = require("moment");
 
 const getTimeZone = (dateString) => {
-  const date = new Date(dateString);
-  return new Intl.DateTimeFormat("vi-VN", {
-    hour: "numeric",
-    minute: "numeric",
-  }).format(date);
+  const timeLocal = moment(dateString).local().format("HH:mm");
+  return timeLocal;
+  //  const date = new Date(dateString);
+  // return new Intl.DateTimeFormat("vi-VN", {
+  //   hour: "numeric",
+  //   minute: "numeric",
+  // }).format(date);
 };
 
 const addHoursToDate = (objDate, minuteDuration) => {
