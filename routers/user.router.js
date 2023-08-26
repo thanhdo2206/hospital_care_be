@@ -12,12 +12,7 @@ const uploadCloud = require("../middlewares/upload/uploadImage");
 
 const userRouter = express.Router();
 
-userRouter.post(
-  "/register",
-  checkExistEmail,
-  validateEmail,
-  userController.register
-);
+userRouter.post("/register", checkExistEmail, userController.register);
 
 userRouter.post(
   "/login",
