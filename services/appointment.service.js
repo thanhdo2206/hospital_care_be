@@ -3,6 +3,7 @@ const {
   User,
   TimeSlot,
   MedicalExamination,
+  sequelize,
 } = require("../models/index");
 const timeSlotService = require("./timeSlot.service");
 const emailService = require("./email.service");
@@ -44,6 +45,7 @@ const getAllAppointmentOfDoctorService = async (
           required: true,
         },
       ],
+      order: [["updatedAt", "DESC"]],
     });
 
     const result = {
@@ -80,13 +82,35 @@ const getAllAppointmentSpecificPatientOfDoctorService = async (
           required: true,
         },
       ],
+      order: [["createdAt", "DESC"]],
     });
 
     const medicalExamination = await MedicalExamination.findOne({
       where: { doctorId },
     });
 
-    return {listAppointment:result,medicalExamination};
+    return { listAppointment: result, medicalExamination };
+  } catch (error) {
+    return {
+      statusCode: 500,
+      message: error.message,
+    };
+  }
+};
+
+const getHistoryAppointmentByPatientService = async (patientId) => {
+  try {
+    const [results] = await sequelize.query(
+      `select Appointments.*,Departments.name as departmentName,Users.avatar as avatarDoctor,Users.firstName as firstNameDoctor,Users.lastName as lastNameDoctor,TimeSlots.startTime,TimeSlots.duration,MedicalExaminations.examinationPrice from Appointments
+        inner join Users on Users.id = appointments.doctorId
+        inner join TimeSlots on TimeSlots.id = Appointments.timeSlotId
+        inner join MedicalExaminations on MedicalExaminations.id = Users.id
+        inner join Departments on MedicalExaminations.departmentId = Departments.id
+        where Appointments.patientId = ${patientId}  
+        order by Appointments.createdAt DESC;`
+    );
+
+    return results;
   } catch (error) {
     return {
       statusCode: 500,
@@ -115,6 +139,7 @@ const changeStatusAppointmentByDoctorService = async (
           model: User,
           as: "patient",
           required: true,
+          attributes: { exclude: ["password", "emailToken", "statusVerify"] },
         },
         {
           model: User,
@@ -128,9 +153,10 @@ const changeStatusAppointmentByDoctorService = async (
       ],
     });
 
-    // await emailService.sendEmailNotificationAppointmentService(
-    //   appointmentUpdated
-    // );
+    await emailService.sendEmailNotificationAppointmentService(
+      appointmentUpdated
+    );
+
 
     return appointmentUpdated;
   } catch (error) {
@@ -146,4 +172,5 @@ module.exports = {
   getAllAppointmentOfDoctorService,
   getAllAppointmentSpecificPatientOfDoctorService,
   changeStatusAppointmentByDoctorService,
+  getHistoryAppointmentByPatientService,
 };

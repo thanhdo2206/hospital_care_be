@@ -19,7 +19,7 @@ const getAllFeedbackByExaminationIdService = async (examinationId) => {
           attributes: ["avatar","firstName","lastName"],
         },
       ],
-      order: [["createdAt", "ASC"]],
+      order: [["createdAt", "DESC"]],
     });
 
     return listFeedback;

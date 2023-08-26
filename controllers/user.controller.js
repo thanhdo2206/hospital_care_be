@@ -75,4 +75,26 @@ const updateProfileUser = async (req, res) => {
   }
 };
 
-module.exports = { register, login, getCurrentUser, updateProfileUser };
+const uploadAvatarUser = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const fileData = req.file;
+
+    const result = await userService.uploadAvatarUserService(fileData, userId);
+
+    return res.status(200).send(result);
+  } catch (error) {
+    return res.status(500).send({
+      statusCode: 500,
+      message: error.message,
+    });
+  }
+};
+
+module.exports = {
+  register,
+  login,
+  getCurrentUser,
+  updateProfileUser,
+  uploadAvatarUser,
+};

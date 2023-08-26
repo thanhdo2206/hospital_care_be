@@ -26,6 +26,13 @@ appointmentRouter.get(
   appointmentController.getAllAppointmentSpecificPatientOfDoctor
 );
 
+appointmentRouter.get(
+  "/patient",
+  authenticate,
+  authorize(["PATIENT"]),
+  appointmentController.getHistoryAppointmentByPatient
+);
+
 appointmentRouter.patch(
   "/change_status_appointment/:appointmentId",
   authenticate,

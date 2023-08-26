@@ -49,6 +49,21 @@ const getAllAppointmentSpecificPatientOfDoctor = async (req, res) => {
   }
 };
 
+const getHistoryAppointmentByPatient = async (req, res) => {
+  try {
+    const patient = req.user;
+
+    const listAppointment =
+      await appointmentService.getHistoryAppointmentByPatientService(
+        patient.id
+      );
+
+    res.status(200).send(listAppointment);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
 const changeStatusAppointmentByDoctor = async (req, res) => {
   try {
     const doctor = req.user;
@@ -73,4 +88,5 @@ module.exports = {
   getAllAppointmentOfDoctor,
   getAllAppointmentSpecificPatientOfDoctor,
   changeStatusAppointmentByDoctor,
+  getHistoryAppointmentByPatient,
 };

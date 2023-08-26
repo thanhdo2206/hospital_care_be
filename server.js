@@ -1,7 +1,6 @@
 const express = require("express");
 const rootRouter = require("./routers");
 const { sequelize } = require("./models");
-const path = require("path");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");

@@ -1,5 +1,5 @@
 const nodemailer = require("nodemailer");
-const { User } = require("../models/index");
+const { User, Appointment } = require("../models/index");
 const {
   createContentEmailNotificationAppointment,
 } = require("../utils/createContentEmail");
@@ -83,15 +83,14 @@ const sendEmailNotificationAppointmentService = async (appointment) => {
     const contentEmail = createContentEmailNotificationAppointment(appointment);
     const titleEmail =
       appointment.status === ACCEPT_APPOINTMENT
-        ? "Email notification of acceptance of medical appointment"
-        : "Email notification of cancellation of medical appointment";
+        ? "Acceptance of medical appointment"
+        : "Cancellation of medical appointment";
     await transporter.sendMail({
       from: '"Hospital Care" <hospitalcarethanh@gmail.com>',
       to: patient.email,
       subject: titleEmail,
       html: contentEmail,
     });
-    console.log("Email has been sent successfully");
   } catch (error) {
     console.log(error);
     return "email not sent";
