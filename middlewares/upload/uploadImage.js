@@ -15,7 +15,6 @@ const storage = new CloudinaryStorage({
     folder: "hospital_care/avatar_patient",
     allowedFormats: ["jpg", "png", "jpeg"],
     public_id: function (req, file) {
-      console.log("file", file);
       const fileName = file.originalname;
       const nameImg = Date.now() + "_" + getNameFile(fileName);
       return nameImg;

@@ -28,10 +28,8 @@ const sendVerifyEmail = async (emailToken, email, userId) => {
 
       `,
     });
-    console.log("email sent sucessfully");
   } catch (error) {
-    console.log("email not sent");
-    console.log(error);
+    
     return {
       statusCode: 500,
       message: error.message,
@@ -58,7 +56,6 @@ const verifyEmailService = async (emailToken, userId) => {
       message: "Verify email succeed!",
     };
   } catch (error) {
-    console.log(error);
     return {
       statusCode: 500,
       message: error.message,
@@ -92,7 +89,6 @@ const sendEmailNotificationAppointmentService = async (appointment) => {
       html: contentEmail,
     });
   } catch (error) {
-    console.log(error);
     return "email not sent";
   }
 };

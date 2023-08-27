@@ -7,7 +7,6 @@ dotenv.config();
 const authenticate = async (req, res, next) => {
   const authenticateHeader = req.header("Authorization");
 
-  // console.log("accessToken authenticate method", authenticateHeader);
 
   //Bearer [token] vì vậy mình phải cắt chuỗi ra
   const accessToken = authenticateHeader
@@ -37,7 +36,6 @@ const authenticate = async (req, res, next) => {
     }
 
     req.user = currentUser;
-    // console.log("decode authenticate method", currentUser);
     next();
   } catch (error) {
     return res.status(401).send({

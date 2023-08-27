@@ -67,7 +67,6 @@ const filterMedicalExaminationByCategoryAndPrice = async (req, res) => {
 const searchNameMedicalExamination = async (req, res) => {
   try {
     const { name } = req.query;
-    console.log(name);
     const listMedical =
       await medicalExaminationService.searchNameMedicalExaminationService(name);
 

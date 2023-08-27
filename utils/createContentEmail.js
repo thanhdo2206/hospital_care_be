@@ -5,11 +5,11 @@ const createContentEmailNotificationAppointment = (appointment) => {
   const patient = appointment.patient;
   const timeSlot = appointment.TimeSlot;
 
-  console.log("timeSlot", timeSlot.startTime);
-  console.log(
-    "getTimeZone(timeSlot.startTime)",
-    getTimeZone(timeSlot.startTime)
-  );
+  // console.log("timeSlot", timeSlot.startTime);
+  // console.log(
+  //   "getTimeZone(timeSlot.startTime)",
+  //   getTimeZone(timeSlot.startTime)
+  // );
   const doctor = appointment.doctor;
   const contentAccept = `
         <h1 style="text-align:center;margin-bottom:20px">Appointment Confirmation</h1>

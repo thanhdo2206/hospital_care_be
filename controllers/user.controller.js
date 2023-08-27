@@ -24,7 +24,6 @@ const register = async (req, res) => {
 const login = async (req, res) => {
   try {
     const { accessToken } = userService.loginService(req.user);
-    console.log("api login");
 
     const { password, emailToken, ...dataUserResponse } = req.user;
 
@@ -48,7 +47,6 @@ const getCurrentUser = async (req, res) => {
         .status(409)
         .send({ statusCode: 409, message: "User does not exist !" });
     const { password, emailToken, statusVerify, ...otherUser } = user;
-    // console.log("user getcurrent user method", otherUser);
     return res.status(200).send(otherUser);
   } catch (error) {
     return res.status(500).send({

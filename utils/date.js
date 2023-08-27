@@ -32,9 +32,7 @@ const getDateAndMonth = (dateString) => {
   const subDate = moment(dateObj).subtract(1, "days");
   const date = subDate.date();
   const month = subDate.month();
-  // console.log("subDate", subDate);
-  // console.log("date", date);
-  // console.log("month", month + 1);
+
   return { date, month: month + 1 };
 };
 
