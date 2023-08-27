@@ -4,6 +4,11 @@ const { ACCEPT_APPOINTMENT } = require("./constant");
 const createContentEmailNotificationAppointment = (appointment) => {
   const patient = appointment.patient;
   const timeSlot = appointment.TimeSlot;
+  const startTime = new Date(timeSlot.startTime);
+  const endTime = addHoursToDate(
+    new Date(timeSlot.startTime),
+    timeSlot.duration
+  );
 
   // console.log("timeSlot", timeSlot.startTime);
   // console.log(
@@ -17,9 +22,7 @@ const createContentEmailNotificationAppointment = (appointment) => {
         <p>You received this email because you booked an online medical appointment on Hospital Care.</p>
         <h3>Information to schedule an appointment:</h3>
         <div><b>Day</b>: ${formatDate(timeSlot.startTime)}</div>
-        <div><b>Time</b>: ${getTimeZone(timeSlot.startTime)} - ${getTimeZone(
-    addHoursToDate(new Date(timeSlot.startTime), timeSlot.duration)
-  )}</div>
+        <div><b>Time</b>: ${startTime.toLocaleTimeString()} - ${endTime.toLocaleTimeString()}</div>
         <div ><b>Doctor</b>: ${doctor.firstName} ${doctor.lastName}</div>
         <p style="margin-top:30px">We look forward to seeing you soon,</p>
         <p>Thank you for scheduling an appointment through our system.</p>
