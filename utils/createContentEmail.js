@@ -10,11 +10,6 @@ const createContentEmailNotificationAppointment = (appointment) => {
     timeSlot.duration
   );
 
-  // console.log("timeSlot", timeSlot.startTime);
-  // console.log(
-  //   "getTimeZone(timeSlot.startTime)",
-  //   getTimeZone(timeSlot.startTime)
-  // );
   const doctor = appointment.doctor;
   const contentAccept = `
         <h1 style="text-align:center;margin-bottom:20px">Appointment Confirmation</h1>
@@ -22,7 +17,7 @@ const createContentEmailNotificationAppointment = (appointment) => {
         <p>You received this email because you booked an online medical appointment on Hospital Care.</p>
         <h3>Information to schedule an appointment:</h3>
         <div><b>Day</b>: ${formatDate(timeSlot.startTime)}</div>
-        <div><b>Time</b>: ${startTime.toLocaleTimeString()} - ${endTime.toLocaleTimeString()}</div>
+        <div><b>Time</b>: ${getTimeZone(startTime)} - ${getTimeZone(endTime)}</div>
         <div ><b>Doctor</b>: ${doctor.firstName} ${doctor.lastName}</div>
         <p style="margin-top:30px">We look forward to seeing you soon,</p>
         <p>Thank you for scheduling an appointment through our system.</p>
